@@ -1,6 +1,6 @@
 using System;
 
-namespace Rocky_Tile.Models
+namespace Rocky.Models
 {
     public class ErrorViewModel
     {

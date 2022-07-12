@@ -1,9 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Rocky_Tile.Models;
+using Rocky.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Rocky_Tile.Data
+namespace Rocky.Data
 {
-    public class ApplicationDbContext  : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -12,5 +16,6 @@ namespace Rocky_Tile.Data
 
         public DbSet<Category> Category { get; set; }
         public DbSet<ApplicationType> ApplicationType { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

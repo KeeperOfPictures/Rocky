@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Rocky_Tile.Data;
-using Rocky_Tile.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Rocky.Data;
+using Rocky.Models;
 
-namespace Rocky_Tile.Controllers
+namespace Rocky.Controllers
 {
     public class CategoryController : Controller
     {
@@ -14,17 +17,20 @@ namespace Rocky_Tile.Controllers
             _db = db;
         }
 
+
         public IActionResult Index()
         {
             IEnumerable<Category> objList = _db.Category;
             return View(objList);
         }
 
+
         //GET - CREATE
         public IActionResult Create()
         {
             return View();
         }
+
 
         //POST - CREATE
         [HttpPost]
@@ -37,19 +43,20 @@ namespace Rocky_Tile.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
             return View(obj);
+
         }
+
 
         //GET - EDIT
         public IActionResult Edit(int? id)
         {
-            if(id== null || id == 0)
+            if(id==null || id == 0)
             {
                 return NotFound();
             }
             var obj = _db.Category.Find(id);
-            if (id == null)
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -68,8 +75,8 @@ namespace Rocky_Tile.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(obj);
+
         }
 
         //GET - DELETE
@@ -80,7 +87,7 @@ namespace Rocky_Tile.Controllers
                 return NotFound();
             }
             var obj = _db.Category.Find(id);
-            if (id == null)
+            if (obj == null)
             {
                 return NotFound();
             }
@@ -94,13 +101,16 @@ namespace Rocky_Tile.Controllers
         public IActionResult DeletePost(int? id)
         {
             var obj = _db.Category.Find(id);
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.Category.Remove(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+                _db.Category.Remove(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            
+
         }
+
     }
 }
